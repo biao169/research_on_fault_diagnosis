@@ -1,0 +1,124 @@
+seed: 20
+device: cuda
+
+resultPath: I:\python\01-work\result\04-pro #-kernel # -k3
+epochNum: 2000
+batchSize: 256
+
+
+data_resource:
+#  CRWU:
+#    path: I:\python_datasets\fault diagnosis dataset\CRWU\CRWU_original
+#    crwu_set1:
+#      [12k_Drive_End_B007_0_118.mat,
+#       12k_Drive_End_B014_0_185.mat,
+#       12k_Drive_End_B021_0_222.mat,
+#        # 12k_Drive_End_B028_0_3005.mat,  ## 数据只有 DE
+#       12k_Drive_End_IR007_0_105.mat,
+#       12k_Drive_End_IR014_0_169.mat,
+#       12k_Drive_End_IR021_0_209.mat,
+#        # 12k_Drive_End_IR028_0_3001.mat,  ## 数据只有 DE
+#        # 12k_Drive_End_OR007@3_0_144.mat,
+#       12k_Drive_End_OR007@6_0_130.mat,
+#       12k_Drive_End_OR014@6_0_197.mat,
+#       12k_Drive_End_OR021@6_0_234.mat,
+#       normal_0_97.mat,
+#      ]
+#
+#    crwu_set1_2:
+#      [12k_Drive_End_B007_0_118.mat,
+#       12k_Drive_End_B014_0_185.mat,
+#        #   12k_Drive_End_B021_0_222.mat,
+#       12k_Drive_End_B028_0_3005.mat,  ## 数据只有 DE
+#       12k_Drive_End_IR007_0_105.mat,
+#       12k_Drive_End_IR014_0_169.mat,
+#       12k_Drive_End_IR021_0_209.mat,
+#        # 12k_Drive_End_IR028_0_3001.mat,  ## 数据只有 DE
+#        # 12k_Drive_End_OR007@3_0_144.mat,
+#       12k_Drive_End_OR007@6_0_130.mat,
+#       12k_Drive_End_OR014@6_0_197.mat,
+#       12k_Drive_End_OR021@6_0_234.mat,
+#       normal_0_97.mat,
+#      ]
+#
+#    crwu_set2:
+#      [12k_Drive_End_B007_1_119.mat,
+#       12k_Drive_End_B014_1_186.mat,
+#       12k_Drive_End_B021_1_223.mat,
+#        # 12k_Drive_End_B028_0_3005.mat,  ## 数据只有 DE
+#       12k_Drive_End_IR007_1_106.mat,
+#       12k_Drive_End_IR014_1_170.mat,
+#       12k_Drive_End_IR021_1_210.mat,
+#        # 12k_Drive_End_IR028_0_3001.mat,  ## 数据只有 DE
+#        # 12k_Drive_End_OR007@3_0_144.mat,
+#       12k_Drive_End_OR007@6_1_131.mat,
+#       12k_Drive_End_OR014@6_1_198.mat,
+#       12k_Drive_End_OR021@6_1_235.mat,
+#       normal_1_98.mat,
+#      ]
+#
+#  DIRG:
+#    path: I:\python_datasets\fault diagnosis dataset\DIRG bearing data\VariableSpeedAndLoad
+#    dirg_set1:
+#      [
+#        C0A_100_505_1.mat,
+#        C1A_100_502_2.mat,
+#        C2A_100_506_1.mat,
+#        C3A_100_505_1.mat,
+#        C4A_100_496_1.mat,
+#        C5A_100_498_1.mat,
+#        C6A_100_500_1.mat,
+#      ]
+
+  MFPT:
+    path: I:\python_datasets\fault diagnosis dataset\MFPT Fault Data Sets
+    mfpt_set1:
+      [
+        [1 - Three Baseline Conditions\\baseline_1.mat, 97656],
+        [3 - Seven More Outer Race Fault Conditions\\OuterRaceFault_vload_1.mat, 48828],
+        [3 - Seven More Outer Race Fault Conditions\\OuterRaceFault_vload_3.mat, 48828],
+        [3 - Seven More Outer Race Fault Conditions\\OuterRaceFault_vload_5.mat, 48828],
+        [3 - Seven More Outer Race Fault Conditions\\OuterRaceFault_vload_7.mat, 48828],
+        [4 - Seven Inner Race Fault Conditions\\InnerRaceFault_vload_1.mat, 48828],
+        [4 - Seven Inner Race Fault Conditions\\InnerRaceFault_vload_3.mat, 48828],
+        [4 - Seven Inner Race Fault Conditions\\InnerRaceFault_vload_5.mat, 48828],
+        [4 - Seven Inner Race Fault Conditions\\InnerRaceFault_vload_7.mat, 48828],
+
+      ]
+
+
+train_loader:
+  shuffle: True
+  dataset:
+    path: I:\python_datasets\fault diagnosis dataset\MFPT Fault Data Sets
+    miniBatch: 256
+
+test_loader:
+  shuffle: False  # False
+  dataset:
+    path: I:\python_datasets\fault diagnosis dataset\MFPT Fault Data Sets
+    miniBatch: 256
+
+optimizer:
+  Adam:  #lr=0.0001, momentum=0.9
+    lr: 0.001
+    betas: [0.9, 0.999]
+    weight_decay: 0.0001
+#  SGD:   #lr=0.0001, momentum=0.9
+#    lr: 0.001
+#    momentum: 0.9
+#    weight_decay: 0.001
+
+scheduler:
+  ReduceLROnPlateau:
+    mode: min
+    factor: 0.5
+    patience: 30
+    eps: 0.00000000001
+    cooldown: 5
+    verbose: False
+#  StepLR:
+#    step_size: 40
+#    gamma: 0.1
+#    last_epoch: -1
+
