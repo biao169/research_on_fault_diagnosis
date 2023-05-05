@@ -1,7 +1,7 @@
 # 程序说明 04-Pro
 ## Folder Description
 
-- `dataset`: 包含大部分故障诊断公开数据集的读取。为方便多个工程使用，getiem函数做了统一的规范
+- `dataset`: 包含大部分故障诊断公开数据集的读取。为方便多个工程使用，getitem函数做了统一的规范
 
 - `loss_fn`：自定义损失函数
 
