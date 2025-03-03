@@ -26,6 +26,12 @@
 # 程序说明 @[network_fn02]
 本程序`network_fn02`是调试的第一个版本，也是故障诊断系列网络的第一个版本。
 
+# 对应论文
+>[1] J. Tan, J. Wan, B. Chen, M. Safran, S. A. AlQahtani, and R. Zhang, “Selective Feature Reinforcement Network for Robust Remote Fault Diagnosis of Wind Turbine Bearing Under Non-Ideal Sensor Data,” IEEE Transactions on Instrumentation and Measurement, vol. 73, pp. 1-11, 2024, Art no. 3515911, doi: 10.1109/TIM.2024.3375958.
+>————————————————                        
+原文链接：https://blog.csdn.net/tjb132/article/details/145962010
+
+
 ## Spark of Thought
 - 受论文DRSN网络启发，深度学习网络在特征提炼过程中，应该会有针对性的学习一下特征；
 - 我们认为每个特征向量中，值偏小的特征对最终结果贡献不大，属于干扰成分；
